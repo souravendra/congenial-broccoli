@@ -1,0 +1,25 @@
+{
+  "name": "congenial-broccoli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/souravendra/congenial-broccoli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/souravendra/congenial-broccoli/issues"
+  },
+  "homepage": "https://github.com/souravendra/congenial-broccoli#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "joi": "^17.4.0",
+    "nodemon": "^2.0.7"
+  }
+}
