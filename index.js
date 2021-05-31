@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express(); //instantiate the express framework
+const utils = require('./utils/task-schema.js');
 
+app.use(express.json());
 
 const tasks = [
     {
@@ -21,10 +23,34 @@ const tasks = [
 ]
 
 // GET
-app.get("/", (request, response) => {
-    response.send("Welcome to the Tasks api");
+app.get("/api/tasks", (request, response) => {
+    response.send(tasks);
 })
+
+// GET (BY ID)
+app.get("/api/tasks/:id", (request, response) => {
+    const taskId = request.params.id;
+    // if(!taskId) return response.status(404).send("The identifier is not valid/doesn't exist");
+    const task = tasks.find(task => task.id === parseInt(taskId));
+    if(!task) return response.status(404).send("A task with the provided id doesn't exist");
+    response.send(task);
+})
+
 // POST
+app.post("/api/tasks", (request, response) => {
+    const { error } = utils.validateTask(request.body);
+
+    if(error) return response.status(400).send("The name should be at least 3 chars long");
+
+    const task = {
+        id: tasks.length + 1,
+        name: request.body.name,
+        completed: request.body.completed
+    };
+
+    tasks.push(task);
+    response.send(task);
+})
 
 // PUT
 
